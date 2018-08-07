@@ -9,10 +9,10 @@ app.config(['$compileProvider', function ($compileProvider) {
 
 app.controller("birlCtrl", function($scope, $window, birlService) {
     $scope.disabled = false;
-    $scope.btText = "Bora!";
+    $scope.btText = "UAAAA!";
     $scope.stdin = "";
     $scope.stdout = "";
-    $scope.code = "HORA DO SHOW\n    CE QUER VER ESSA PORRA? (\"Hello, World! Porra!\\n\");\n    BORA CUMPADE 0;\nBIRL";
+    $scope.code = "EAI PIAZADA\n    COM VOCES QUE EU ESTOU FALANDO (\"Hello, World! UAAAAA!\\n\");\n    MAGYVER HOJE VOCE EH UM HOMEM FORMADO 0;\nADEUS PIAZADA";
     $scope.temErro = false;
 
     $scope.sendBirl = function(){
@@ -26,12 +26,12 @@ app.controller("birlCtrl", function($scope, $window, birlService) {
             if(error == "server-error") {
                 $scope.stdout = "NÃO VAI DAR NÃO, SERVIDOR CAIU";
             } else {
-                $scope.stdout = "ERRO DE COMPILAÇÃO CUMPADE";
+                $scope.stdout = "VOCE SO TA FAZENDO UM ERRO, TEM QUE IR SEM CAPACETE";
             }
             $scope.temErro = true;
         }).finally(function(){
             $scope.disabled = false;
-            $scope.btText = "Bora!";
+            $scope.btText = "UAAAA!";
         });
     }
 
@@ -51,7 +51,7 @@ app.controller("birlCtrl", function($scope, $window, birlService) {
 app.service("birlService", function($http, $q) {
     this.runBirl = function(code, stdin){
         var deferred = $q.defer();
-        $http.post("https://uaaa.herokuapp.com/compile", {code: code, stdin: stdin }).then(function(response){
+        $http.post("http://localhost:3000/compile", {code: code, stdin: stdin }).then(function(response){
             data = response.data;
             if(data.error) {
                 deferred.reject("compile-error");
